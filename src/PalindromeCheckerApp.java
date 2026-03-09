@@ -1,30 +1,48 @@
-import java.util.*;
+class Node {
+    char data;
+    Node next;
+
+    Node(char data){
+        this.data = data;
+        this.next = null;
+    }
+}
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String word = "level";
+        String text = "radar";
 
-        Deque<Character> deque = new ArrayDeque<>();
+        Node head = null;
+        Node tail = null;
 
-        for(char c : word.toCharArray()){
-            deque.addLast(c);
-        }
-
-        boolean isPalindrome = true;
-
-        while(deque.size() > 1){
-            if(deque.removeFirst() != deque.removeLast()){
-                isPalindrome = false;
-                break;
+        for(char c : text.toCharArray()){
+            Node newNode = new Node(c);
+            if(head == null){
+                head = newNode;
+                tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
             }
         }
 
-        if(isPalindrome){
-            System.out.println(word + " is a palindrome");
+        String original = "";
+        String reverse = "";
+
+        Node temp = head;
+
+        while(temp != null){
+            original += temp.data;
+            reverse = temp.data + reverse;
+            temp = temp.next;
+        }
+
+        if(original.equals(reverse)){
+            System.out.println(text + " is a palindrome");
         } else {
-            System.out.println(word + " is not a palindrome");
+            System.out.println(text + " is not a palindrome");
         }
     }
 }
