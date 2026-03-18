@@ -1,26 +1,21 @@
 public class PalindromeCheckerApp {
 
-    static boolean isPalindrome(String str, int start, int end){
-
-        if(start >= end){
-            return true;
-        }
-
-        if(str.charAt(start) != str.charAt(end)){
-            return false;
-        }
-
-        return isPalindrome(str, start + 1, end - 1);
-    }
-
     public static void main(String[] args) {
 
-        String word = "madam";
+        String text = "A man a plan a canal Panama";
 
-        if(isPalindrome(word, 0, word.length()-1)){
-            System.out.println(word + " is a palindrome");
+        String normalized = text.replaceAll("\\s+", "").toLowerCase();
+
+        String reversed = "";
+
+        for(int i = normalized.length()-1; i >= 0; i--){
+            reversed += normalized.charAt(i);
+        }
+
+        if(normalized.equals(reversed)){
+            System.out.println(text + " is a palindrome");
         } else {
-            System.out.println(word + " is not a palindrome");
+            System.out.println(text + " is not a palindrome");
         }
     }
 }
