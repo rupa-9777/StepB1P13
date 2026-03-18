@@ -1,21 +1,37 @@
+import java.util.Stack;
+
+class PalindromeChecker {
+
+    public boolean checkPalindrome(String word){
+
+        Stack<Character> stack = new Stack<>();
+
+        for(char c : word.toCharArray()){
+            stack.push(c);
+        }
+
+        String reversed = "";
+
+        while(!stack.isEmpty()){
+            reversed = reversed + stack.pop();
+        }
+
+        return word.equals(reversed);
+    }
+}
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String text = "A man a plan a canal Panama";
+        String word = "madam";
 
-        String normalized = text.replaceAll("\\s+", "").toLowerCase();
+        PalindromeChecker checker = new PalindromeChecker();
 
-        String reversed = "";
-
-        for(int i = normalized.length()-1; i >= 0; i--){
-            reversed += normalized.charAt(i);
-        }
-
-        if(normalized.equals(reversed)){
-            System.out.println(text + " is a palindrome");
+        if(checker.checkPalindrome(word)){
+            System.out.println(word + " is a palindrome");
         } else {
-            System.out.println(text + " is not a palindrome");
+            System.out.println(word + " is not a palindrome");
         }
     }
 }
