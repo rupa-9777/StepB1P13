@@ -1,48 +1,26 @@
-class Node {
-    char data;
-    Node next;
-
-    Node(char data){
-        this.data = data;
-        this.next = null;
-    }
-}
-
 public class PalindromeCheckerApp {
+
+    static boolean isPalindrome(String str, int start, int end){
+
+        if(start >= end){
+            return true;
+        }
+
+        if(str.charAt(start) != str.charAt(end)){
+            return false;
+        }
+
+        return isPalindrome(str, start + 1, end - 1);
+    }
 
     public static void main(String[] args) {
 
-        String text = "radar";
+        String word = "madam";
 
-        Node head = null;
-        Node tail = null;
-
-        for(char c : text.toCharArray()){
-            Node newNode = new Node(c);
-            if(head == null){
-                head = newNode;
-                tail = newNode;
-            } else {
-                tail.next = newNode;
-                tail = newNode;
-            }
-        }
-
-        String original = "";
-        String reverse = "";
-
-        Node temp = head;
-
-        while(temp != null){
-            original += temp.data;
-            reverse = temp.data + reverse;
-            temp = temp.next;
-        }
-
-        if(original.equals(reverse)){
-            System.out.println(text + " is a palindrome");
+        if(isPalindrome(word, 0, word.length()-1)){
+            System.out.println(word + " is a palindrome");
         } else {
-            System.out.println(text + " is not a palindrome");
+            System.out.println(word + " is not a palindrome");
         }
     }
 }
